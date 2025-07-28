@@ -1,31 +1,24 @@
 class Solution {
 public:
-    // Recursive function to count subsets with the given OR
-    void countSubsets(int index, int currentOR, int maxOR, vector<int>& nums,
-                      int& count) {
-        // If we reach the end of the array
-        if (index == nums.size()) {
-            if (currentOR == maxOR) {
-                count++; // Increment count if current OR matches max OR
+    int solve(vector<int>&nums, int maxOr, int currOr, int i){
+        //base 
+        if(i == nums.size()){
+            if(maxOr == currOr){
+                return 1; // found the subset
             }
-            return;
+            return 0;
         }
-
-        // Include the current element in the subset
-        countSubsets(index + 1, currentOR | nums[index], maxOR, nums, count);
-        // Exclude the current element from the subset
-        countSubsets(index + 1, currentOR, maxOR, nums, count);
+        int take =    solve(nums, maxOr, currOr | nums[i], i + 1);
+        int notTake = solve(nums, maxOr,  currOr, i + 1);
+        return notTake + take; 
     }
-
-    // Main function to solve the problem
     int countMaxOrSubsets(vector<int>& nums) {
-        int maxOR = 0;
-        for (int num : nums) {
-            maxOR |= num; // Calculate the maximum OR
+        int n = nums.size();
+        int maxOr = 0;
+        for(int num: nums){
+            maxOr |= num;
         }
-
-        int count = 0; // Initialize count of valid subsets
-        countSubsets(0, 0, maxOR, nums, count); // Count subsets with max OR
-        return count;                           // Return the final count
+        int currOr = 0;
+       return solve(nums, maxOr, currOr, 0);
     }
 };
