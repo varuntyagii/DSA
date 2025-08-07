@@ -21,7 +21,7 @@ public:
             if(count % 2 != 0){
                 return -1;
             }
-            for (int i = 1; i <= abs(count) / 2; i++) { 
+            for (int i = 0; i < abs(count) / 2; i++) { 
             // if {2, 2} = freq/2 = 2 /2 also condider the basket 2
             result.push_back(cost);
             }
