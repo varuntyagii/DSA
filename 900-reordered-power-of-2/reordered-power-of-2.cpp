@@ -1,22 +1,24 @@
 class Solution {
 public:
-    string getSortedStr(int n) {
-        string s = to_string(n);
-        sort(begin(s), end(s));
-        return s;
+    // Helper: count digit frequency of a number
+    vector<int> countDigits(int x) {
+        vector<int> cnt(10, 0);
+        if (x == 0) cnt[0] = 1;
+        while (x > 0) {
+            cnt[x % 10]++;  // last digit ka count
+            x /= 10;        // last digit hata do
+        }
+        return cnt;
     }
 
     bool reorderedPowerOf2(int n) {
-        string s = getSortedStr(n);
+        vector<int> target = countDigits(n);
 
-        //check all 2 powers and see if it matches with s
-        //2^29
-        for(int p = 0; p <= 29; p++) {
-            if(s == getSortedStr(1 << p)) {
+        for (int i = 0; i < 31; i++) { // 2^0 to 2^30
+            int power = 1 << i;
+            if (countDigits(power) == target)
                 return true;
-            }
         }
-
         return false;
     }
 };
