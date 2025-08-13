@@ -1,15 +1,8 @@
 class Solution {
 public:
-    bool check(int n ){
-        if( n == 1)return true;
-        if(n <= 0 || n % 3 != 0)return false;
-
-       return check(n/3);
-    }
     bool isPowerOfThree(int n) {
-       return check(n);
+    int maxPowerOf3 = 1162261467; // 3^19, max power of 3 in 32-bit int
+    return n > 0 && (maxPowerOf3 % n == 0);
+}
 
-    }
 };
-
-//third approach tc = (log3*n) sc = O(1)/log3(n)
