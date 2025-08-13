@@ -11,3 +11,5 @@ public:
 
     }
 };
+
+//third approach tc = (log3*n) sc = O(1)/log3(n)
