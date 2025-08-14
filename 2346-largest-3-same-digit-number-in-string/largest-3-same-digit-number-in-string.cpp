@@ -5,7 +5,7 @@ public:
         string result = "";
         for(int i = 2; i < n; i++){
             if(num[i] == num[i - 1] && num[i] == num[i - 2]){
-                string sub = num.substr(i - 2, 3); 
+                string sub = num.substr(i - 2, 3); //substr = (start position, length)
                 if(sub > result){
                     result = sub;
                 }
