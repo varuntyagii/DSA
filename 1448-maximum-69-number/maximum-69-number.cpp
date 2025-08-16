@@ -11,3 +11,7 @@ public:
         return stoi(s);
     }
 };
+
+
+// return num + 3 * pow(10, place value) = > har digit ko htane ke baadd placevalue++ krdo 
+//this is the tc(n) sc(1)
