@@ -16,3 +16,4 @@ public:
         return jump;
     }
 };
+///Minimum kitne jumps chahiye first index se last index tak pahunchne ke liye, agar har index pe tumhe ek max jump length di gayi hai?”
