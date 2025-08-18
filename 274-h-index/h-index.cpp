@@ -19,6 +19,7 @@ public:
 
             if(count >= i){
                 return i;
+                break;
             }
         }
         return 0;
