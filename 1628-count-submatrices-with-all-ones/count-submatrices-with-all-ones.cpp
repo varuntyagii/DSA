@@ -1,42 +1,33 @@
 class Solution {
 public:
-
-    int OnedArrayCount(vector<int>& vec) {
-        int cons = 0;
-        int subCount = 0;
-
-        for(int &val : vec) {
-            if(val == 0) {
-                cons = 0;
-            } else {
-                cons++;
+    int oneDarray(vector<int>&arr){
+        int count = 0;
+        int consecutive = 0;
+        for(int num: arr){
+            if(num == 0){
+                consecutive = 0;
             }
+            else{
+                consecutive++;
+            }
+            count += consecutive;
 
-            subCount += cons;
         }
-
-        return subCount;
+        return count;
     }
-
     int numSubmat(vector<vector<int>>& mat) {
         int m = mat.size();
         int n = mat[0].size();
-
         int result = 0;
-        //O(m*m*n)
-        for(int startRow = 0; startRow < m; startRow++) {
-
-            vector<int> vec(n, 1);
-            for(int endRow = startRow; endRow < m; endRow++) {
-                
-                for(int col = 0; col < n; col++) {
-                    vec[col] = vec[col] & mat[endRow][col];
+        for(int row = 0; row < m; row++){
+            vector<int>arr(n, 1);
+            for(int endRow = row; endRow < m; endRow++){
+                for(int i = 0; i < n; i++){
+                    arr[i] = arr[i] & mat[endRow][i];
                 }
-
-                result += OnedArrayCount(vec);
+            result += oneDarray(arr);
             }
         }
-
         return result;
     }
 };
