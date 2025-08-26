@@ -1,22 +1,22 @@
 class Solution {
 public:
     int areaOfMaxDiagonal(vector<vector<int>>& dimensions) {
-        int mx = 0;
-        int area = 0;
-        for(auto& i : dimensions){
-            int a = i[0];
-            int b = i[1];
-            int dig = (a*a + b*b);
-            int aarea = a * b;
-            if(dig > mx){
-                mx = dig;
-                area = aarea;
+        int maxArea = 0;
+        int maxDig = 0;
+        for(auto &it: dimensions){
+            int l = it[0];
+            int w = it[1];
+            int dig = l*l + w*w;
+            int area = l * w;
+            if(dig > maxDig){
+                maxDig = dig;
+                maxArea = area;
             }
-            else if(dig == mx){
-               area = max(area, aarea);
+            else if(dig == maxDig){
+                maxArea = max(area, maxArea);
             }
 
         }
-        return area;
+        return maxArea;
     }
 };
