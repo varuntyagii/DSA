@@ -11,7 +11,7 @@ public:
                 i = last_idx + 1;
                 last_idx = j; // last time zero kha dekha
             }
-            result = max(result, j - i);
+            result = max(result, (j - i + 1) - 1);
             j++;
         }
         return result;
