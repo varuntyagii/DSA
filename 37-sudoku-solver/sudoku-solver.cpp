@@ -1,47 +1,41 @@
+
 class Solution {
 public:
-    bool isValid(vector<vector<char>>& board, int row, int col, char d) {
-        for (int i = 0; i < 9; i++) {
-            if (board[row][i] == d) return false;  // check row
-            if (board[i][col] == d) return false;  // check col
-        }
-
-        int start_i = (row / 3) * 3;
-        int start_j = (col / 3) * 3;
-        for (int k = 0; k < 3; k++) {
-            for (int l = 0; l < 3; l++) {
-                if (board[start_i + k][start_j + l] == d) {
-                    return false; // check 3x3 box
-                }
-            }
-        }
-        return true;
+    void solveSudoku(vector<vector<char>>& board) {
+        solve(board);
     }
 
     bool solve(vector<vector<char>>& board) {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (board[i][j] == '.') {
-                    for (char d = '1'; d <= '9'; d++) {
-                        if (isValid(board, i, j, d)) {
-                            // place number
-                            board[i][j] = d;
+        for(int row = 0; row < 9; row++) {
+            for(int col = 0; col < 9; col++) {
+                if(board[row][col] == '.') { // empty cell
+                    for(char ch = '1'; ch <= '9'; ch++) {
+                        if(isValid(board, row, col, ch)) {
+                            board[row][col] = ch;  // place number
 
-                            // recurse
-                            if (solve(board)) return true;
+                            if(solve(board)) return true; // recurse
 
-                            // undo if recursion fails
-                            board[i][j] = '.';
+                            board[row][col] = '.'; // backtrack
                         }
                     }
-                    return false; // no number worked for this cell
+                    return false; // no valid number, backtrack
                 }
             }
         }
-        return true; // filled all cells
+        return true; // all filled
     }
 
-    void solveSudoku(vector<vector<char>>& board) {
-        solve(board);
+    bool isValid(vector<vector<char>>& board, int row, int col, char ch) {
+        for(int i = 0; i < 9; i++) {
+            // check row
+            if(board[row][i] == ch) return false;
+            // check column
+            if(board[i][col] == ch) return false;
+            // check 3x3 grid
+            int subRow = 3 * (row / 3) + i / 3;
+            int subCol = 3 * (col / 3) + i % 3;
+            if(board[subRow][subCol] == ch) return false;
+        }
+        return true;
     }
 };
