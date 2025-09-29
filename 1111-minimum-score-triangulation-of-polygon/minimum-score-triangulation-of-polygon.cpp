@@ -1,11 +1,11 @@
 class Solution {
 public:
-    int dp[101][101];
+    int dp[51][51]; // O(n) * O(n)
     int solve(int i, int j, vector<int>& val) {
         int result = INT_MAX;
         if (j - i + 1 < 3) return 0;
         if(dp[i][j] != -1) return dp[i][j];
-        for (int k = i + 1; k < j; k++) {
+        for (int k = i + 1; k < j; k++) { // O(n)
             int wt = solve(i, k, val) + val[i] * val[j] * val[k] + solve(k, j, val);
             result = min(result, wt);
         }
@@ -17,3 +17,6 @@ public:
         return solve(0, n - 1, values);
     }
 };
+
+// tc = O(n * n * n)
+// sc = O(n * n)
