@@ -3,6 +3,7 @@ public:
     unordered_set<string>visit;
     string smallest = "";
     void rotate(string &s, int b){
+        b %= s.size();
         reverse(s.begin(), s.end());
         reverse(s.begin(), s.begin() + b);
         reverse(s.begin() + b, s.end());
