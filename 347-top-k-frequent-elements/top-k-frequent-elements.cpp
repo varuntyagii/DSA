@@ -19,6 +19,7 @@ public:
             result.push_back(minHeap.top().second); // value
             minHeap.pop();
         }
+        sort(result.begin(), result.end());
         return result;
     }
 };
