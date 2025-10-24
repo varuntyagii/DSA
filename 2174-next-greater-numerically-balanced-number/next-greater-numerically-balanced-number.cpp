@@ -16,7 +16,7 @@ public:
         return true;
     }
     int nextBeautifulNumber(int n) {
-        for (int i = n + 1; i <= 1224444; i++) {
+        for (int i = n + 1; i <= 10000000; i++) {
             if (isBalanced(i)) {
                 return i;
             }
