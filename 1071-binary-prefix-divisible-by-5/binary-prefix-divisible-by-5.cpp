@@ -5,7 +5,7 @@ public:
         vector<bool>result(n);
         int curr = 0;
         for(int i = 0; i < n; i++){
-            curr = ((curr * 2) + nums[i]) % 5;
+            curr = ((curr << 1) + nums[i]) % 5; // (curr * 2) left shift krta hai
             if(curr == 0){
                 result[i] = true;
             }
@@ -16,3 +16,5 @@ public:
         return result;
     }
 };
+
+//  (curr * 2) == (curr << 1) left shift krta hai
