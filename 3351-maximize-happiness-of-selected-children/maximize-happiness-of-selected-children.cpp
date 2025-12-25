@@ -1,16 +1,22 @@
 class Solution {
 public:
-    long long solve(vector<int>& h, int idx, int k, int taken) {
-        if (k == 0 || idx < 0) return 0;
-
-        int curr = h[idx] - taken;
-        if (curr <= 0) return 0;
-
-        return curr + solve(h, idx - 1, k - 1, taken + 1);
-    }
-
-    long long maximumHappinessSum(vector<int>& happiness, int k) {
-        sort(happiness.begin(), happiness.end());
-        return solve(happiness, happiness.size() - 1, k, 0);
+    long long maximumHappinessSum(vector<int>& h, int k) {
+        int n = h.size();
+        int count = 0;
+        int i = n - 1;
+        long long result = 0;
+        sort(h.begin(), h.end());
+        while(i >= 0 && k > 0){
+            long long ans = h[i] - count;
+            if(ans < 0){
+               break;
+                
+            }
+             count++;
+            i--;
+            k--;
+            result += ans;
+        }
+        return result;
     }
 };
