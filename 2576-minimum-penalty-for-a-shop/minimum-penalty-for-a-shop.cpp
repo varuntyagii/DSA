@@ -13,19 +13,21 @@ public:
         int minPenalty = penalty;
         int bestHour = 0;
 
-        for(int i = 0; i < n; i++){
-            if(customers[i] == 'Y'){
-                penalty--;
+        // j = 1 to n
+        for (int j = 1; j <= n; j++) {
+            // j-1 hour ka effect adjust karo
+            if (customers[j - 1] == 'Y') {
+                penalty--; // pehle closed tha, ab open → penalty kam
+            } else {
+                penalty++; // pehle open tha aur 'N' → penalty badh
             }
-            else{
-                penalty++;
-            }
-            if(minPenalty > penalty){
+
+            if (penalty < minPenalty) {
                 minPenalty = penalty;
-                bestHour = i + 1;
+                bestHour = j;
             }
         }
+
         return bestHour;
-        
     }
 };
