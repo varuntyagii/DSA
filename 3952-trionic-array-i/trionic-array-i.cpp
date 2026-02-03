@@ -18,7 +18,7 @@ public:
          while(i < n - 1 && nums[i] < nums[i + 1]){ // increasing
             i++;
         }
-        if(i == n - 1){
+        if( i == 0 || i == n - 1){
             return true;
         }
         return false;
