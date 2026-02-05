@@ -4,24 +4,24 @@ public:
         int n = nums.size();
         vector<int> result(n);
 
-        int i = 0;
-        while(i < n) {
-            int j = 0;
+        for (int i = 0; i < n; i++) {
 
-            if(nums[i] > 0) {
-                j = (i + nums[i]) % n;
-                result[i] = nums[j];
+            int j = i;
+
+            if (nums[i] > 0) {
+                // RIGHT moves
+                for (int step = 0; step < nums[i]; step++) {
+                    j = (j + 1) % n;
+                }
             }
-            else if(nums[i] < 0) {
-                j = (i + nums[i]) % n;
-                if(j < 0) j += n;   // critical fix
-                result[i] = nums[j];
-            }
-            else {
-                result[i] = nums[i];
+            else if (nums[i] < 0) {
+                // LEFT moves using prev
+                for (int step = 0; step < -nums[i]; step++) {
+                    j = (j - 1 + n) % n;   // prev
+                }
             }
 
-            i++;
+            result[i] = nums[j];
         }
         return result;
     }
