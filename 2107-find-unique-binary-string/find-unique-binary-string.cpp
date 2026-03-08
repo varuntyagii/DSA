@@ -2,16 +2,16 @@ class Solution {
 public:
     string findDifferentBinaryString(vector<string>& nums) {
         int n = nums.size();
-        string result = "";
+        string ans = "";
         for(int i = 0; i < n; i++){
             char ch = nums[i][i];
-            if(ch  == '0'){
-                result += '1';
+            if(ch == '0'){
+                ans += '1';
             }
             else{
-                result += '0';
+                ans += '0';
             }
         }
-        return result;
+        return ans;
     }
 };
