@@ -8,7 +8,7 @@ public:
                 sum += weights[ch - 'a']; // a - a + 1 = 1 
             }
                 sum %= 26;
-            ans.push_back(char(122 - sum)); 
+            ans += char(122 - sum); 
          }
          return ans;
     }
