@@ -1,11 +1,9 @@
 class Solution {
 public:
     int maxProduct(int n) {
-        int prod = 1;
         int val = 0;
         int maxVal1 = -1;
         int maxVal2 = -1;
-        int ans = 1;
         while (n > 0) {
             val = n % 10;
            if(val >= maxVal1){
