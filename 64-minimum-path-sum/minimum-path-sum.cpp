@@ -1,7 +1,8 @@
 class Solution {
 public:
-    int dp[201][201];
+    // int dp[201][201];
     int m, n;
+    vector<vector<int>>dp;
     int dfs(vector<vector<int>>& grid, int i, int j) {
         if (i >= m || j >= n)
             return 0;
@@ -21,7 +22,11 @@ public:
     int minPathSum(vector<vector<int>>& grid) {
         m = grid.size();
         n = grid[0].size();
-       memset(dp, -1, sizeof(dp));
+    //    memset(dp, -1, sizeof(dp));
+    //   vector<vector<int>>dp(m + 1, vector<int>(n + 1, -1));
+    dp.assign(m, vector<int>(n, -1));
+
+
         return dfs(grid, 0, 0);
         
     }
