@@ -13,7 +13,7 @@ public:
         int down = solve(mat, i + 1, j);
         int right = solve(mat, i, j + 1);
 
-        return dp[i][j] = down + right;
+        return dp[i][j] = (down + right) % (int)2e9;
     }
     int uniquePathsWithObstacles(vector<vector<int>>& mat) {
         n = mat.size();
