@@ -1,6 +1,7 @@
 class Solution {
 public:
-    int dp[50001];
+    // int dp[50001];
+    vector<int>dp;
     int solve(vector<int>& stone, int i) {
         int n = stone.size();
         int res = INT_MIN;
@@ -15,7 +16,9 @@ public:
         return dp[i] = res; 
     }
     string stoneGameIII(vector<int>& stone) {
-        memset(dp, -1, sizeof(dp));
+        // memset(dp, -1, sizeof(dp));
+         int n = stone.size();
+        dp.assign(n + 1, -1);
         int val = solve(stone, 0);
         if (val > 0)
             return "Alice";
