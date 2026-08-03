@@ -15,6 +15,8 @@ public:
     bool stoneGame(vector<int>& piles) {
         memset(dp, -1, sizeof(dp));
         int ans = solve(piles, 0, piles.size() - 1);
-        return ans > 0;
+        if(ans > 0)return true;
+        return false;
+        // return ans > 0;
     }
 };
