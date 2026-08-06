@@ -1,31 +1,44 @@
 class Solution {
 public:
-    unordered_map<int, int>mp;
-    int n;
-    int dp[2001][2001];
-    int solve(vector<int>&st, int curr_store_index, int prev_jump){
-        if(curr_store_index == n - 1)return true;
-        if(dp[curr_store_index][prev_jump] != -1)return dp[curr_store_index][prev_jump];
+    bool canCross(vector<int>& stones) {
 
-        bool result = false;
-        for(int i = prev_jump - 1; i <= prev_jump + 1; i++){
-            //make sure the value shoud be +ve
-            if(i > 0){
-                int next_stone = st[curr_store_index] + i;
-                if(mp.find(next_stone) != mp.end()){
-                    result = result || solve(st, mp[next_stone], i);
+        int n = stones.size();
+
+        unordered_map<int,int> mp;
+
+        for(int i=0;i<n;i++)
+            mp[stones[i]]=i;
+
+        vector<vector<bool>> dp(n, vector<bool>(n+1,false));
+
+        dp[0][0]=true;
+
+        for(int i=0;i<n;i++){
+
+            for(int jump=0;jump<=n;jump++){
+
+                if(!dp[i][jump]) continue;
+
+                for(int nextJump=jump-1; nextJump<=jump+1; nextJump++){
+
+                    if(nextJump<=0) continue;
+
+                    int nextStone=stones[i]+nextJump;
+
+                    if(mp.count(nextStone)){
+
+                        int idx=mp[nextStone];
+
+                        dp[idx][nextJump]=true;
+                    }
                 }
             }
         }
-        return dp[curr_store_index][prev_jump] = result;
-    }
-    bool canCross(vector<int>& stones) {
-         n = stones.size();
-        if(stones[1] != 1)return false;
-        memset(dp, -1, sizeof(dp));
-        for(int i = 0; i < n; i++){
-            mp[stones[i]] = i;
-        }
-        return solve(stones, 0, 0);
+
+        for(int jump=0;jump<=n;jump++)
+            if(dp[n-1][jump])
+                return true;
+
+        return false;
     }
 };
