@@ -1,30 +1,29 @@
 class Solution {
 public:
-    int coinChange(vector<int>& coins, int amount) {
-         int n = coins.size();
-
-        vector<vector<int>> dp(n + 1,
-                               vector<int>(amount + 1, 1e9));
-
-        dp[0][0] = 0;
-
-        for (int i = 1; i <= n; i++) {
-
-            dp[i][0] = 0;
-
-            for (int j = 1; j <= amount; j++) {
-
-                // Not Take
-                dp[i][j] = dp[i - 1][j];
-
-                // Take
-                if (j >= coins[i - 1]) {
-                    dp[i][j] = min(dp[i][j],
-                                   1 + dp[i][j - coins[i - 1]]);
-                }
-            }
+    int dp[10001][13];
+    int solve(vector<int>& coins, int amount, int i) {
+        if (amount == 0)
+            return 0;
+        // if(i >= coins.size())return le9;
+        if (amount < 0) {
+            return 1e9; // imposible state coins[i] = 5 amount = 3 agr 0 diya
+                        // toh 1 + 0 agr -1 toh 1 + (-1) = 0
+        }
+        if(dp[amount][i] != -1){
+           return dp[amount][i];
+        }
+        if (i == coins.size()) {
+            return 1e9;
         }
 
-        return dp[n][amount] == 1e9 ? -1 : dp[n][amount];
+        int take = 1 + solve(coins, amount - coins[i], i);
+
+        int skip = solve(coins, amount, i + 1);
+        return dp[amount][i] = min(skip, take);
+    }
+    int coinChange(vector<int>& coins, int amount) {
+        memset(dp, -1, sizeof(dp));
+        int ans = solve(coins, amount, 0);
+        return ans == 1e9 ? -1 : ans;
     }
 };
