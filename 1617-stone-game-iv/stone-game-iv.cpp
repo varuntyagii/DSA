@@ -11,7 +11,7 @@ public:
 
         for (int i = 1; i * i <= n; i++) {
 
-            if (solve(n - i * i) == false) {
+            if (solve(n - i * i) == 0) {
                 return dp[n] = true;
             }
         }
