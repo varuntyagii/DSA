@@ -9,7 +9,12 @@ public:
         int stone = 0;
         int result = (person == 1) ? -1:  INT_MAX;
         for(int x = 1; x <= min(2*M, n - i); x++){
-             stone += p[x + i - 1];
+            //  stone += p[x + i - 1];
+           int sum = 0;
+            for(int j = i; j < i + x; j++) {
+                sum += p[j];
+            }
+            stone = sum;
             if(person == 1){
                 result = max(result, stone + solve(p, 0, i + x, max(M, x)));
             }
