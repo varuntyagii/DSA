@@ -12,7 +12,7 @@ public:
             return n;
 
         for(int i = 0; i < n; i++) {
-            if(nums[i] != 0)
+            if(x == 0 && nums[i] != 0)
                 return n - 1;
         }
 
