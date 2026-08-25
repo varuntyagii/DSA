@@ -1,7 +1,7 @@
 class Solution {
 public:
     typedef pair<int,int>p;
-    vector<vector<int>>dir{{-1, 0}, {1, 0}, {0, - 1}, {0, 1}};
+    vector<p>dir{{-1, 0}, {1, 0}, {0, - 1}, {0, 1}};
     int orangesRotting(vector<vector<int>>& grid) {
         int n = grid.size();
         int m = grid[0].size();
@@ -28,8 +28,8 @@ public:
                 int i = curr.first;
                 int j = curr.second;
                 for(auto d: dir){
-                    int newi= i + d[0]; // dir[0] = -1 
-                    int newj= j + d[1]; // dir[1] = 1 hume top jana hai or abhi hum grid[1][1] hai toh top jayenge
+                    int newi= i + d.first; // dir[0] = -1 
+                    int newj= j + d.second; // dir[1] = 1 hume top jana hai or abhi hum grid[1][1] hai toh top jayenge
                     if(newi >= 0 && newi < n && newj >= 0 && newj < m && grid[newi][newj] == 1){
                         grid[newi][newj] = 2;
                         q.push({newi, newj});
