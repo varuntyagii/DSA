@@ -9,7 +9,7 @@ public:
             int diff = arr[i] - arr[i - 1];
             if(diff < minDiff){ // 1 < 2
                 minDiff = diff;
-                res.clear();
+                res.clear(); //[[-20,11],[11,26],[26,27]] = [[26,27]] = 1diff
                 res.push_back({arr[i - 1] , arr[i]});
             }
             else if(diff == minDiff){//2 == 2
