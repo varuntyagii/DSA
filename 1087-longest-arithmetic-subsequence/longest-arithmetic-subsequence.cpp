@@ -15,7 +15,7 @@ public:
                 int dif = nums[j] - nums[i];
 
                 if(dp[i].count(dif))
-                    dp[j][dif] = dp[i][dif] + 1;
+                    dp[j][dif] = 1 + dp[i][dif] ;
                 else
                     dp[j][dif] = 2;
 
