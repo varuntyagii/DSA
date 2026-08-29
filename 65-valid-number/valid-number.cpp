@@ -7,9 +7,9 @@ public:
             s == "nan" || s == "0x11")
             return false;
 
-        char* end;
+        char* end; // address ko store krega 
 
-        strtod(s.c_str(), &end);
+        strtod(s.data(), &end);
 
         return end != s.c_str() && *end == '\0';
     }
