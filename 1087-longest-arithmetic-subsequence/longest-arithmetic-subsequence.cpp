@@ -6,7 +6,7 @@ public:
 
         vector<unordered_map<int, int>> dp(n);
 
-        int ans = 2;
+        int ans = 0;
 
         for(int i = 0; i < n; i++) {
 
