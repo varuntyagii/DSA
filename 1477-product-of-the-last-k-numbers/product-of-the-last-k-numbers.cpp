@@ -2,10 +2,11 @@ class ProductOfNumbers {
 public:
 vector<int>ans;
 int n;
-    // ProductOfNumbers() {
-    //     ans.clear();
-    //     n = 0;
-    // }
+    ProductOfNumbers() {
+        // ans.clear();
+        // n = 0;
+         ans.push_back('[]');
+    }
     
     void add(int num) {
         ans.push_back(num);
